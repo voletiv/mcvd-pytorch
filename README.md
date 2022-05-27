@@ -28,7 +28,7 @@ pip install -r requirements.txt # install all requirements
 
 ## Experiments
 
-The experiments to reproduce the paper can be found in /example_scripts/final/training_scripts.sh and /example_scripts/final/sampling_scripts.sh.
+The experiments to reproduce the paper can be found in [/example_scripts/final/training_scripts.sh](https://github.com/voletiv/mcvd-pytorch/blob/master/example_scripts/final/training_scripts.sh) and [/example_scripts/final/sampling_scripts.sh](https://github.com/voletiv/mcvd-pytorch/blob/master/example_scripts/final/sampling_scripts.sh).
 
 ## Configurations
 
