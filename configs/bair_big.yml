@@ -1,0 +1,119 @@
+training:
+  L1: false
+  batch_size: 64
+  n_epochs: 1000000
+  n_iters: 3000001
+  snapshot_freq: 50000
+  snapshot_sampling: true
+  sample_freq: 50000
+  val_freq: 1000
+  log_freq: 100
+  log_all_sigmas: false
+
+sampling:
+  batch_size: 100
+  data_init: false
+  ckpt_id: 0
+  final_only: true
+  fid: false
+  ssim: true
+  fvd: true
+  denoise: true
+  subsample: 100
+  num_samples4fid: 10000
+  num_samples4fvd: 10000
+  inpainting: false
+  interpolation: false
+  n_interpolations: 15
+  consistent: true
+  step_lr: 0.0
+  n_steps_each: 0
+  train: false
+  num_frames_pred: 28
+  clip_before: true
+  max_data_iter: 100000
+  init_prev_t: -1.0 # if >0, we start next_frame at prev_frame starting with noise t=init_prev_t
+  one_frame_at_a_time: false
+  preds_per_test: 1
+
+fast_fid:
+  batch_size: 1000
+  num_samples: 1000
+  begin_ckpt: 5000
+  freq: 5000
+  end_ckpt: 300000
+  pr_nn_k: 3
+  verbose: false
+  ensemble: false
+  step_lr: 0.0
+  n_steps_each: 0
+
+test:
+  begin_ckpt: 5000
+  end_ckpt: 300000
+  batch_size: 100
+
+data:
+  dataset: "BAIR"
+  image_size: 64
+  channels: 3
+  logit_transform: false
+  uniform_dequantization: false
+  gaussian_dequantization: false
+  random_flip: true
+  rescaled: true
+  color_jitter: 0.0
+  num_workers: 0
+  test_subset: -1
+  num_frames: 5
+  num_frames_cond: 2
+  num_frames_future: 0
+  prob_mask_cond: 0.0
+  prob_mask_future: 0.0
+  prob_mask_sync: false
+
+model:
+  depth: deeper
+  version: DDPM
+  gamma: false
+  arch: unetmore
+  type: v1
+  time_conditional: true
+  dropout: 0.1
+  sigma_dist: linear
+  sigma_begin: 0.02
+  sigma_end: 0.0001
+  num_classes: 1000
+  ema: true
+  ema_rate: 0.999
+  spec_norm: false
+  normalization: InstanceNorm++
+  nonlinearity: swish
+  ngf: 96
+  ch_mult: 
+    - 1
+    - 2
+    - 3
+    - 4
+  num_res_blocks: 2 # 8 for traditional
+  attn_resolutions: 
+    - 8
+    - 16
+    - 32 # can use only 16 for traditional
+  n_head_channels: 96 # -1 for traditional
+  conditional: true
+  noise_in_cond: false
+  output_all_frames: false # could be useful especially for 3d models
+  cond_emb: false
+  spade: false
+  spade_dim: 128
+
+optim:
+  weight_decay: 0.000
+  optimizer: "Adam"
+  lr: 0.0001
+  warmup: 5000
+  beta1: 0.9
+  amsgrad: false
+  eps: 0.00000001
+  grad_clip: 1.0
