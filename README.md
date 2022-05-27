@@ -77,12 +77,14 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 python main.py --config configs/cityscapes_big_spad
 
 ### Sampling
 
-You can look at stdout or the metric plots in `<exp>/logs/smmnist_cat` to determine which checkpoint provides the best metrics. Then, you can sample from 25 frames using the chosen checkpoint (e.g., 250k) of the previous SMNIST model by running:
+You can look at stdout or the metric plots in `<exp>/logs/smmnist_cat` to determine which checkpoint provides the best metrics. Then, you can sample from 25 frames using the chosen checkpoint (e.g., 250k) of the previous SMNIST model by running `main.py` with the `--video_gen` option:
 ```
 CUDA_VISIBLE_DEVICES=0 python main.py --config configs/smmnist_DDPM_big5.yml --data_path /my/data/path/to/datasets --exp smmnist_cat --ni --config_mod sampling.max_data_iter=1000 sampling.num_frames_pred=25 sampling.preds_per_test=10 sampling.subsample=100 model.version=DDPM --ckpt 250000 --video_gen -v videos_250k_DDPM_1000_nfp_pred25
 ```
 
 Results will be saved in `<exp>/video_samples/videos_250k_DDPM_1000_nfp_pred25`.
+
+You can use the above option to sample videos from any pretrained MCVD model.
 
 ## Esoteric options
 
@@ -99,7 +101,7 @@ model.version=FPNDM # F-PNDM from https://arxiv.org/abs/2202.09778
 
 Note that this code can be used to generate images by setting data.num_frames=0, data.num_frames_cond=0, data.num_frames_future=0. 
 
-Many unused options also exist which are from the original code by https://github.com/ermongroup/ncsnv2.
+Many unused options also exist which are from the original code by https://github.com/ermongroup/ncsnv2, mostly applicable only to images.
 
 ## For LPIPS
 
