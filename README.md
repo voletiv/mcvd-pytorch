@@ -6,7 +6,6 @@
 
 This is the official implementation of the paper [Masked Conditional Video Diffusion for Prediction, Generation, and Interpolation](https://arxiv.org/abs/2205.09853). In this paper, we devise a general-purpose model for video prediction (forward and backward), unconditional generation, and interpolation with Masked Conditional Video Diffusion (MCVD) models. Please see our [website](https://mask-cond-video-diffusion.github.io/) for more details. This repo is based on the code from https://github.com/ermongroup/ncsnv2.
 
-
 ## Scaling
 
 The models from our paper were trained with 1 to 4 GPUs (requiring from 32GB to 160GB of RAM). Models can be scaled with less or more GPUs by changing the following parameters:
@@ -29,6 +28,8 @@ pip install -r requirements.txt # install all requirements
 ## Experiments
 
 The experiments to reproduce the paper can be found in [/example_scripts/final/training_scripts.sh](https://github.com/voletiv/mcvd-pytorch/blob/master/example_scripts/final/training_scripts.sh) and [/example_scripts/final/sampling_scripts.sh](https://github.com/voletiv/mcvd-pytorch/blob/master/example_scripts/final/sampling_scripts.sh).
+
+We also provide a small notebook demo for sampling from SMMNIST: https://github.com/voletiv/mcvd-pytorch/blob/master/MCVD_demo_SMMNIST.ipynb.
 
 ## Configurations
 
