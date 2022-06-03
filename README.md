@@ -6,6 +6,20 @@
 
 This is the official implementation of the paper [Masked Conditional Video Diffusion for Prediction, Generation, and Interpolation](https://arxiv.org/abs/2205.09853). In this paper, we devise a general-purpose model for video prediction (forward and backward), unconditional generation, and interpolation with Masked Conditional Video Diffusion (MCVD) models. Please see our [website](https://mask-cond-video-diffusion.github.io/) for more details. This repo is based on the code from https://github.com/ermongroup/ncsnv2.
 
+If you find the code/idea useful for your research, please cite:
+
+
+```bib
+@article{voleti2022MCVD,
+  title={Masked Conditional Video Diffusion for Prediction, Generation, and Interpolation},
+  author={Voleti, Vikram and Jolicoeur-Martineau, Alexia and Pal, Christopher},
+  url={https://arxiv.org/abs/2205.09853},
+  journal={arXiv:2205.09853},
+  year={2022}}
+}
+
+```
+
 ## Scaling
 
 The models from our paper were trained with 1 to 4 GPUs (requiring from 32GB to 160GB of RAM). Models can be scaled with less or more GPUs by changing the following parameters:
@@ -30,6 +44,10 @@ pip install -r requirements.txt # install all requirements
 The experiments to reproduce the paper can be found in [/example_scripts/final/training_scripts.sh](https://github.com/voletiv/mcvd-pytorch/blob/master/example_scripts/final/training_scripts.sh) and [/example_scripts/final/sampling_scripts.sh](https://github.com/voletiv/mcvd-pytorch/blob/master/example_scripts/final/sampling_scripts.sh).
 
 We also provide a small notebook demo for sampling from SMMNIST: https://github.com/voletiv/mcvd-pytorch/blob/master/MCVD_demo_SMMNIST.ipynb.
+
+## Pretrained Checkpoints and results
+
+The checkpoints used for the experiments and their results can be used here: https://drive.google.com/drive/u/1/folders/15pDq2ziTv3n5SlrGhGM0GVqwIZXgebyD
 
 ## Configurations
 
@@ -62,7 +80,7 @@ data.prob_mask_future=0.50 # probability of masking the future frames (allows pr
 
 When `data.num_frames_future > 0`, `data.num_frames_cond > 0`, `data.prob_mask_cond=0.50`, and `data.prob_mask_future=0.50`, one can do video prediction (forward and backward), generation, and interpolation.
 
-### Training
+## Training
 
 You can train on Stochastic Moving MNIST with 1 GPU (if memory issues, use model.ngf=64) using:
 ```
@@ -76,7 +94,7 @@ You can train on Cityscapes with 4 GPUs using:
 CUDA_VISIBLE_DEVICES=0,1,2,3 python main.py --config configs/cityscapes_big_spade.yml --data_path /my/data/path/to/datasets --exp exp_city_spade --ni
 ```
 
-### Sampling
+## Sampling
 
 You can look at stdout or the metric plots in `<exp>/logs/smmnist_cat` to determine which checkpoint provides the best metrics. Then, you can sample from 25 frames using the chosen checkpoint (e.g., 250k) of the previous SMNIST model by running `main.py` with the `--video_gen` option:
 ```
@@ -117,13 +135,13 @@ The code will do it for you!
 > Use `models/fvd/convert_tf_pretrained.py` to make `i3d_pretrained_400.pt`
 
 
-## Datasets
+# Datasets
 
-### Stochastic Moving MNIST (64x64, ch1)
+## Stochastic Moving MNIST (64x64, ch1)
 
 The script will automatically download the PyTorch MNIST dataset, which will be used to generate Stochastic Moving MNIST dynamically.
 
-### KTH (64x64, ch1)
+## KTH (64x64, ch1)
 
 Download the hdf5 dataset:
 ```
@@ -136,7 +154,7 @@ gdown --fuzzy https://drive.google.com/file/d/1d2UfHV6RhSrwdDAlCFY3GymtFPpmh_8X/
 > 2. Convert 64x64 images to HDF5 format:\
 > `python datasets/kth_convert.py --kth_dir '/path/to/KTH' --image_size 64 --out_dir '/path/to/KTH64_h5' --force_h5 False`
 
-### BAIR (64x64, ch3)
+## BAIR (64x64, ch3)
 
 Download the hdf5 dataset:
 ```
@@ -150,7 +168,7 @@ gdown --fuzzy https://drive.google.com/file/d/1-R_srAOy5ZcylGXVernqE4WLCe6N4_wq/
 > `python datasets/bair_convert.py --bair_dir '/path/to/BAIR' --out_dir '/path/to/BAIR_h5'`
 
 
-### Cityscapes (64x64, ch3)
+## Cityscapes (64x64, ch3)
 
 ```
 gdown --fuzzy https://drive.google.com/file/d/1oP7n-FUfa9ifsMn6JHNS9depZfftvrXx/view?usp=sharing
@@ -164,7 +182,7 @@ gdown --fuzzy https://drive.google.com/file/d/1oP7n-FUfa9ifsMn6JHNS9depZfftvrXx/
 > 2. Convert it to HDF5 format, and save in `/path/to/Cityscapes<image_size>_h5`:\
 > `python datasets/cityscapes_convert.py --leftImg8bit_sequence_dir '/path/to/Cityscapes/leftImg8bit_sequence' --image_size 64 --out_dir '/path/to/Cityscapes64_h5'`
 
-### Cityscapes (128x128, ch3)
+## Cityscapes (128x128, ch3)
 
 Download the hdf5 dataset:
 ```
@@ -179,7 +197,7 @@ gdown --fuzzy https://drive.google.com/file/d/13yaJkKtmDsgtaEvuXKSvbix5usea6TJy/
 > 2. Convert it to HDF5 format, and save in `/path/to/Cityscapes<image_size>_h5`:\
 > `python datasets/cityscapes_convert.py --leftImg8bit_sequence_dir '/path/to/Cityscapes/leftImg8bit_sequence' --image_size 128 --out_dir '/path/to/Cityscapes128_h5'`
 
-### UCF-101 (orig:320x240, ch3)
+## UCF-101 (orig:320x240, ch3)
 
 Download the hdf5 dataset:
 ```
@@ -192,23 +210,3 @@ gdown --fuzzy https://drive.google.com/file/d/13yaJkKtmDsgtaEvuXKSvbix5usea6TJy/
 > `sh cityscapes_download.sh /download/dir`\
 > 2. Convert it to HDF5 format, and save in `/path/to/UCF101_h5`:\
 > `python datasets/ucf101_convert.py --out_dir /path/to/UCF101_h5 --ucf_dir /download/dir/UCF-101 --splits_dir /download/dir/ucfTrainTestlist`
-
-## Pretrained Checkpoints and results
-
-The checkpoints used for the experiments and their results can be used here: https://drive.google.com/drive/u/1/folders/15pDq2ziTv3n5SlrGhGM0GVqwIZXgebyD
-
-## References
-
-If you find the code/idea useful for your research, please cite:
-
-
-```bib
-@article{voleti2022MCVD,
-  title={Masked Conditional Video Diffusion for Prediction, Generation, and Interpolation},
-  author={Voleti, Vikram and Jolicoeur-Martineau, Alexia and Pal, Christopher},
-  url={https://arxiv.org/abs/2205.09853},
-  journal={arXiv:2205.09853},
-  year={2022}}
-}
-
-```
