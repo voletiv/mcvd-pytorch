@@ -162,7 +162,7 @@ gdown --fuzzy https://drive.google.com/file/d/1oP7n-FUfa9ifsMn6JHNS9depZfftvrXx/
 > `sh cityscapes_download.sh username password`\
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; using your `username` and `password` that you created on https://www.cityscapes-dataset.com/
 > 2. Convert it to HDF5 format, and save in `/path/to/Cityscapes<image_size>_h5`:\
-> `python datasets/cityscapes_convert.py --leftImg8bit_sequence_dir '/path/to/Cityscapes/leftImg8bit_sequence' --image_size 64 --out_dir '/path/to/Cityscapes128_h5'`
+> `python datasets/cityscapes_convert.py --leftImg8bit_sequence_dir '/path/to/Cityscapes/leftImg8bit_sequence' --image_size 64 --out_dir '/path/to/Cityscapes64_h5'`
 
 ### Cityscapes (128x128, ch3)
 
