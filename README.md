@@ -13,9 +13,9 @@ If you find the code/idea useful for your research, please cite:
 @article{voleti2022MCVD,
   title={Masked Conditional Video Diffusion for Prediction, Generation, and Interpolation},
   author={Voleti, Vikram and Jolicoeur-Martineau, Alexia and Pal, Christopher},
-  url={https://arxiv.org/abs/2205.09853},
-  journal={arXiv:2205.09853},
-  year={2022}}
+  journal={(NeurIPS) Advances in Neural Information Processing Systems},
+  year={2022},
+  url={https://arxiv.org/abs/2205.09853}}
 }
 
 ```
