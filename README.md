@@ -10,12 +10,12 @@ If you find the code/idea useful for your research, please cite:
 
 
 ```bib
-@article{voleti2022MCVD,
-  title={Masked Conditional Video Diffusion for Prediction, Generation, and Interpolation},
-  author={Voleti, Vikram and Jolicoeur-Martineau, Alexia and Pal, Christopher},
-  journal={(NeurIPS) Advances in Neural Information Processing Systems},
-  year={2022},
-  url={https://arxiv.org/abs/2205.09853}}
+@inproceedings{voleti2022MCVD,
+ author = {Voleti, Vikram and Jolicoeur-Martineau, Alexia and Pal, Christopher},
+ title = {MCVD: Masked Conditional Video Diffusion for Prediction, Generation, and Interpolation},
+ url = {https://arxiv.org/abs/2205.09853},
+ booktitle = {(NeurIPS) Advances in Neural Information Processing Systems},
+ year = {2022}
 }
 
 ```
