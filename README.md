@@ -36,6 +36,8 @@ The models from our paper were trained with 1 to 4 GPUs (requiring from 32GB to 
 ```
 # if using conda (ignore otherwise)
 conda create --name vid python=3.8
+# # (Optional) If your machine has a GCC/G++ version < 5:
+# conda install -c conda-forge gxx=8.5.0    # (should be executed before the installation of pytorch, torchvision, and torchaudio)
 conda install pytorch torchvision torchaudio cudatoolkit=11.3 -c pytorch
 
 pip install -r requirements.txt # install all requirements
